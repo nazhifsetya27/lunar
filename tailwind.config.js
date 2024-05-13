@@ -400,6 +400,7 @@ module.exports = {
 
         "blue-profile/100": "#72EDF2",
         "blue-profile/900": "#5151E5",
+        "black-header/900": "#1d1d1f",
       },
       boxShadow: {
         "shadows/shadow-xs": "0px 1px 2px 0px #1018280D",

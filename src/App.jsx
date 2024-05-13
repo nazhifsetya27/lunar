@@ -1,11 +1,25 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { useApp } from "./AppContext";
+import { Header } from "./components/Header";
+import InputForm from "./components/InputForm";
 
 function App() {
+  const { errorMessage } = useApp();
   return (
-    <div className="text-gray-700 display-xs-semibold text-center">
-      Hello World!
-    </div>
+    <>
+      <Header />
+      <div className="flex m-3 justify-between">
+        {/* LEFT */}
+        <div className="w-1/2">
+          <InputForm />
+          {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+        </div>
+        {/* RIGHT */}
+        <div className="w-1/2">
+          <div className="text-center">Preview</div>
+        </div>
+      </div>
+    </>
   );
 }
 
