@@ -1,16 +1,18 @@
 import React from "react";
-import { Document, Page } from "docx";
 
 const Preview = ({ template }) => {
+  const file_url =
+    "https://docs.google.com/document/d/184dAeYo0mqq30UwO66yh3NiS5RZIwdcAjqBcAZPwreA/preview";
+
   return (
-    <div>
-      <h2>Preview</h2>
-      <Document>
-        <Page size="A4">
-          {/* Render the template content */}
-          {template}
-        </Page>
-      </Document>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <iframe
+        width="100%"
+        height="740"
+        frameBorder="0"
+        src={file_url}
+        title="Document Preview"
+      ></iframe>
     </div>
   );
 };

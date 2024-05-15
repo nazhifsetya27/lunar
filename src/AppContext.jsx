@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import axios from "axios"; // Import axios
+import { handleValueBulan } from "./utils/utils";
 
 const AppContext = createContext();
 
@@ -11,12 +12,52 @@ const AppProvider = ({ children }) => {
   const [waktuMulai, setWaktuMulai] = useState(null);
   const [waktuBerakhir, setWaktuBerakhir] = useState(null);
   const [tahunAnggaran, setTahunAnggaran] = useState(null);
+  const [lokasi_tabel_1, setLokasi_tabel_1] = useState({});
+
+  /* bulan tabel 1 */
+  const [bulan_tabel_1, setBulan_tabel_1] = useState({});
+  const [bulan_tabel_2, setBulan_tabel_2] = useState({});
+
+  const bulanRPFlags = handleValueBulan(bulan_tabel_1, "_RP");
+  const bulanPRBKFlags = handleValueBulan(bulan_tabel_2, "_PRBK");
+
+  const monthValuesRP = {};
+  const monthValuesPRBK = {};
+  console.log({ monthValuesRP, monthValuesPRBK });
+  const months = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MEI",
+    "JUN",
+    "JUL",
+    "AGT",
+    "SEP",
+    "OKT",
+    "NOV",
+    "DES",
+  ];
+  months.forEach((month) => {
+    monthValuesRP[`${month}_RP`] = bulanRPFlags[`${month}_RP`] ? "V" : "";
+  });
+  months.forEach((month) => {
+    monthValuesPRBK[`${month}_PRBK`] = bulanPRBKFlags[`${month}_PRBK`]
+      ? "V"
+      : "";
+  });
+  // console.log(monthValuesPRBK);
+  /* end of bulan tabel 1 */
 
   // TEXTFIELD
   const [textFieldValues, setTextFieldValues] = useState([]);
   const [points, setPoints] = useState([{ label: "A", value: "" }]);
   const [numbers, setNumbers] = useState([{ label: 1, value: "" }]);
   const [tujuan, setTujuan] = useState([{ label: 1, value: "" }]);
+  // console.log(textFieldValues);
+
+  // value to conditionally render sub_kegiatan
+  const [currentKegiatan, setCurrentKegiatan] = useState(null);
   /* END STATES */
 
   const nomor_sub_kegiatan = subKegiatan?.label.split(" ")[0];
@@ -131,6 +172,19 @@ const AppProvider = ({ children }) => {
           WAKTU_BERAKHIR: waktuBerakhir?.label,
           TAHUN: tahunAnggaran?.label,
           KETUA_TIM: textFieldObject.ketua_tim,
+          LOKASI_1: lokasi_tabel_1.LOKASI_1,
+          LOKASI_2: lokasi_tabel_1.LOKASI_2,
+          LOKASI_3: lokasi_tabel_1.LOKASI_3,
+          LOKASI_4: lokasi_tabel_1.LOKASI_4,
+          LOKASI_5: lokasi_tabel_1.LOKASI_5,
+          LOKASI_6: lokasi_tabel_1.LOKASI_6,
+          LOKASI_7: lokasi_tabel_1.LOKASI_7,
+          KETERANGAN_RP: textFieldObject.KETERANGAN_RP,
+          PETUGAS_RP: textFieldObject.PETUGAS_RP,
+          ...monthValuesRP,
+          KETERANGAN_PRBK: textFieldObject.KETERANGAN_PRBK,
+          PETUGAS_PRBK: textFieldObject.PETUGAS_PRBK,
+          ...monthValuesPRBK,
         },
       });
 
@@ -148,6 +202,7 @@ const AppProvider = ({ children }) => {
       }
     } catch (error) {
       alert(error.message);
+      setErrorMessage(error?.message);
     } finally {
       setIsLoading(false);
     }
@@ -177,6 +232,12 @@ const AppProvider = ({ children }) => {
         setTahunAnggaran,
         tujuan,
         setTujuan,
+        currentKegiatan,
+        setCurrentKegiatan,
+        lokasi_tabel_1,
+        setLokasi_tabel_1,
+        setBulan_tabel_1,
+        setBulan_tabel_2,
       }}
     >
       {children}

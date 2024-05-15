@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { DropdownOptions } from "../dropdownOption";
+import { DropdownOptions } from "../utils/dropdownOption";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { useApp } from "../AppContext";
@@ -26,10 +26,43 @@ const InputForm = () => {
     setTahunAnggaran,
     tujuan,
     setTujuan,
+    currentKegiatan,
+    setCurrentKegiatan,
+    setLokasi_tabel_1,
+    setBulan_tabel_1,
+    setBulan_tabel_2,
   } = useApp();
 
-  // value to conditionally render sub_kegiatan
-  const [currentKegiatan, setCurrentKegiatan] = useState(null);
+  const handleChangeBulanTabel_1 = (event, values) => {
+    const newSelectedValues = {};
+    values.forEach((value) => {
+      newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
+    });
+    setBulan_tabel_1(newSelectedValues);
+  };
+
+  const handleChangeBulanTabel_2 = (event, values) => {
+    const newSelectedValues = {};
+    values.forEach((value) => {
+      newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
+    });
+    setBulan_tabel_2(newSelectedValues);
+  };
+
+  const handleChangeLokasiTabel_1 = (event, value) => {
+    const id = event.target.id.split("-")[0]; // Extracting the id part (before '-')
+    if (value) {
+      setLokasi_tabel_1((prevState) => ({
+        ...prevState,
+        [id]: value.label,
+      }));
+    } else {
+      setLokasi_tabel_1((prevState) => ({
+        ...prevState,
+        [id]: "",
+      }));
+    }
+  };
 
   // ONCHANGE
   // dropdown
@@ -130,7 +163,7 @@ const InputForm = () => {
   };
 
   return (
-    <div className="h-screen overflow-y-auto">
+    <div className="h-screen overflow-y-auto custom-scrollbar">
       <form className=" mx-auto p-4 border rounded-lg gap-3 flex flex-col">
         <Autocomplete
           disablePortal
@@ -405,6 +438,94 @@ const InputForm = () => {
             fullWidth
             onChange={handleChangeTextField}
           />
+        </div>
+
+        {/* tabel 1*/}
+        {/* a */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-md-semibold my-4">a. Persiapan</p>
+            <p className="text-sm-regular my-4">Rapat persiapan</p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_1"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_RP"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_RP"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              // id=""
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel_1}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
+        </div>
+
+        {/* b */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-md-semibold my-4">b. Pelaksanaan</p>
+            <p className="text-sm-regular my-4">
+              1. Penyusunan Rumusan Bahan Kebijakan
+            </p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_2"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_PRBK"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_PRBK"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel_2}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
         </div>
       </form>
     </div>
