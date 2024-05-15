@@ -7,18 +7,32 @@ import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { useApp } from "../AppContext";
 
 const InputForm = () => {
-  const {kegiatan, setKegiatan, subKegiatan, setSubKegiatan} = useApp()
-
-  // TEXTFIELD
-  const [textFieldValues, setTextFieldValues] = useState([]);
-  const [points, setPoints] = useState([{ label: "A", value: "" }]);
-  const [numbers, setNumbers] = useState([{ label: 1, value: "" }]);
-  const [tujuan, setTujuan] = useState([{ label: 1, value: "" }]);
+  const {
+    kegiatan,
+    setKegiatan,
+    subKegiatan,
+    setSubKegiatan,
+    textFieldValues,
+    setTextFieldValues,
+    points,
+    setPoints,
+    numbers,
+    setNumbers,
+    waktuMulai,
+    setWaktuMulai,
+    waktuBerakhir,
+    setWaktuBerakhir,
+    tahunAnggaran,
+    setTahunAnggaran,
+    tujuan,
+    setTujuan,
+  } = useApp();
 
   // value to conditionally render sub_kegiatan
   const [currentKegiatan, setCurrentKegiatan] = useState(null);
 
   // ONCHANGE
+  // dropdown
   const handleKegiatanChange = (event, value) => {
     setKegiatan(value);
     setCurrentKegiatan(event.target.id);
@@ -27,6 +41,19 @@ const InputForm = () => {
   const handleSubKegiatanChange = (event, value) => {
     setSubKegiatan(value);
   };
+
+  const handleWaktuMulaiChange = (event, value) => {
+    setWaktuMulai(value);
+  };
+
+  const handleWaktuBerakhirChange = (event, value) => {
+    setWaktuBerakhir(value);
+  };
+
+  const handleTahunAnggaranChange = (event, value) => {
+    setTahunAnggaran(value);
+  };
+  //end of dropdown
 
   const handleChangeTextField = (event) => {
     const { name, value } = event.target;
@@ -85,7 +112,7 @@ const InputForm = () => {
   const handleAddTujuan = () => {
     const lastLabel = tujuan[tujuan.length - 1].label;
     const nextLabel = lastLabel + 1;
-    if (lastLabel < 20) {
+    if (lastLabel < 10) {
       setTujuan([...tujuan, { label: nextLabel, value: "" }]);
     }
   };
@@ -291,7 +318,7 @@ const InputForm = () => {
             E. STRATEGI PELAKSANAAN SUB KEGIATAN
           </p>
           <TextField
-            name="strategi pelaksanaan"
+            name="strategi_pelaksanaan"
             label="Strategi Pelaksanaan Sub Kegiatan"
             variant="outlined"
             fullWidth
@@ -325,13 +352,59 @@ const InputForm = () => {
           />
         </div>
 
-        {/* Render text field values */}
         <div>
-          {textFieldValues.map((item, index) => (
-            <p key={index}>
-              {item.name}: {item.value}
-            </p>
-          ))}
+          <p className="text-md-semibold my-4">TABEL.1</p>
+          <TextField
+            name="target_tabel"
+            label="TARGET"
+            variant="outlined"
+            fullWidth
+            onChange={handleChangeTextField}
+          />
+        </div>
+
+        <div>
+          <Autocomplete
+            disablePortal
+            id="waktu_mulai"
+            options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+            value={waktuMulai}
+            onChange={handleWaktuMulaiChange}
+            renderInput={(params) => (
+              <TextField {...params} label="Waktu Mulai" />
+            )}
+          />
+        </div>
+        <div>
+          <Autocomplete
+            disablePortal
+            id="waktu_berakhir"
+            options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+            value={waktuBerakhir}
+            onChange={handleWaktuBerakhirChange}
+            renderInput={(params) => (
+              <TextField {...params} label="Waktu Berakhir" />
+            )}
+          />
+        </div>
+        <div>
+          <Autocomplete
+            disablePortal
+            id="tahun_anggaran"
+            options={DropdownOptions.optionTahunAnggaran}
+            value={tahunAnggaran}
+            onChange={handleTahunAnggaranChange}
+            renderInput={(params) => <TextField {...params} label="Anggaran" />}
+          />
+        </div>
+        <div>
+          <TextField
+            name="ketua_tim"
+            label="Ketua Tim"
+            variant="outlined"
+            fullWidth
+            onChange={handleChangeTextField}
+          />
         </div>
       </form>
     </div>

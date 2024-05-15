@@ -15,21 +15,3 @@ const formatToRupiah = (number) => {
 };
 
 export { formatToRupiah };
-
-/* const handleSubmit = (e) => {
-    e.preventDefault();
-    const formattedData = {
-      document: "zODvrBSqNVaM5ADyJcbo",
-      apiKey: "HGYHEHI-46AEBTY-URY3S4I-Q6XLIAA",
-      format: "docx",
-      data: {
-        SUBKEGIATAN: formData.SUBKEGIATAN,
-        JUDUL: formData.JUDUL,
-        KEGIATAN: formData.KEGIATAN,
-        INDIKATOR: formData.INDIKATOR,
-        TARGET: formData.TARGET,
-        ANGGARAN: formData.ANGGARAN,
-      },
-    };
-    onSubmit(formattedData);
-  }; */

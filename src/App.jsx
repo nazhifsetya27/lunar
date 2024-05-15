@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="flex m-3 justify-between">
+      <div className="pt-16 flex m-3 justify-between">
         {/* LEFT */}
         <div className="w-1/2">
           <InputForm />

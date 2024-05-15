@@ -49,6 +49,48 @@ const DropdownOptions = {
         "4.01.04.1.02.0003. fasilitasi, koordinasi dan sinkronisasi, evaluasi dan capaian kinerja kebijakan kesejahteraan rakyat bidang sosial",
     },
   ],
+
+  optionWaktuMulaiDanBerakhir: [
+    { label: "Januari" },
+    { label: "Februari" },
+    { label: "Maret" },
+    { label: "April" },
+    { label: "Mei" },
+    { label: "Juni" },
+    { label: "Juli" },
+    { label: "Agustus" },
+    { label: "September" },
+    { label: "Oktober" },
+    { label: "November" },
+    { label: "Desember" },
+  ],
+
+  optionTahunAnggaran: [
+    {
+      label: "2020",
+    },
+    {
+      label: "2021",
+    },
+    {
+      label: "2022",
+    },
+    {
+      label: "2023",
+    },
+    {
+      label: "2024",
+    },
+    {
+      label: "2025",
+    },
+  ],
+
+  optionLokasi_RP: [
+    {
+      label: "Bandung",
+    },
+  ],
 };
 
 export { DropdownOptions };
