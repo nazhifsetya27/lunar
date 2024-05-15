@@ -31,4 +31,19 @@ const handleValueBulan = (bulan, suffix) => {
   return bulanFlags;
 };
 
-export { formatToRupiah, handleValueBulan };
+const months = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MEI",
+  "JUN",
+  "JUL",
+  "AGT",
+  "SEP",
+  "OKT",
+  "NOV",
+  "DES",
+];
+
+export { formatToRupiah, handleValueBulan, months };

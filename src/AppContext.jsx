@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios"; // Import axios
-import { handleValueBulan } from "./utils/utils";
+import { handleValueBulan, months } from "./utils/utils";
 
 const AppContext = createContext();
 
@@ -18,40 +18,58 @@ const AppProvider = ({ children }) => {
   const [bulan_tabel_1, setBulan_tabel_1] = useState({});
   const [bulan_tabel_2, setBulan_tabel_2] = useState({});
   const [bulan_tabel_3, setBulan_tabel_3] = useState({});
+  const [bulan_tabel_4, setBulan_tabel_4] = useState({});
+  const [bulan_tabel_5, setBulan_tabel_5] = useState({});
+  const [bulan_tabel_6, setBulan_tabel_6] = useState({});
+  const [bulan_tabel_7, setBulan_tabel_7] = useState({});
 
-  const bulanRPFlags = handleValueBulan(bulan_tabel_1, "_RP");
-  const bulanPRBKFlags = handleValueBulan(bulan_tabel_2, "_PRBK");
-  const bulanMNEFlags = handleValueBulan(bulan_tabel_3, "_MNE");
+  const [monthValuesRP, setMonthValuesRP] = useState({});
+  const [monthValuesPRBK, setMonthValuesPRBK] = useState({});
+  const [monthValuesMNE, setMonthValuesMNE] = useState({});
+  const [monthValuesPK, setMonthValuesPK] = useState({});
+  const [monthValuesFNK, setMonthValuesFNK] = useState({});
+  const [monthValuesKK, setMonthValuesKK] = useState({});
+  const [monthValuesPELAPORAN, setMonthValuesKKPELAPORAN] = useState({});
 
-  const monthValuesRP = {};
-  const monthValuesPRBK = {};
-  const monthValuesMNE = {};
+  useEffect(() => {
+    const bulanRPFlags = handleValueBulan(bulan_tabel_1, "_RP");
+    const bulanPRBKFlags = handleValueBulan(bulan_tabel_2, "_PRBK");
+    const bulanMNEFlags = handleValueBulan(bulan_tabel_3, "_MNE");
+    const bulanPKFlags = handleValueBulan(bulan_tabel_4, "_PK");
+    const bulanFNKFlags = handleValueBulan(bulan_tabel_5, "_FNK");
+    const bulanKKFlags = handleValueBulan(bulan_tabel_6, "_KK");
+    const bulanPELAPORANFlags = handleValueBulan(bulan_tabel_7, "_PELAPORAN");
 
-  const months = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MEI",
-    "JUN",
-    "JUL",
-    "AGT",
-    "SEP",
-    "OKT",
-    "NOV",
-    "DES",
-  ];
-  months.forEach((month) => {
-    monthValuesRP[`${month}_RP`] = bulanRPFlags[`${month}_RP`] ? "V" : "";
-  });
-  months.forEach((month) => {
-    monthValuesPRBK[`${month}_PRBK`] = bulanPRBKFlags[`${month}_PRBK`]
-      ? "V"
-      : "";
-  });
-  months.forEach((month) => {
-    monthValuesPRBK[`${month}_MNE`] = bulanMNEFlags[`${month}_MNE`] ? "V" : "";
-  });
+    const generateMonthValues = (bulanFlags, prefix, setMonthValues) => {
+      const monthValues = {};
+      months.forEach((month) => {
+        monthValues[`${month}_${prefix}`] = bulanFlags[`${month}_${prefix}`]
+          ? "V"
+          : "";
+      });
+      setMonthValues(monthValues);
+    };
+
+    generateMonthValues(bulanRPFlags, "RP", setMonthValuesRP);
+    generateMonthValues(bulanPRBKFlags, "PRBK", setMonthValuesPRBK);
+    generateMonthValues(bulanMNEFlags, "MNE", setMonthValuesMNE);
+    generateMonthValues(bulanPKFlags, "PK", setMonthValuesPK);
+    generateMonthValues(bulanFNKFlags, "FNK", setMonthValuesFNK);
+    generateMonthValues(bulanKKFlags, "KK", setMonthValuesKK);
+    generateMonthValues(
+      bulanPELAPORANFlags,
+      "PELAPORAN",
+      setMonthValuesKKPELAPORAN
+    );
+  }, [
+    bulan_tabel_1,
+    bulan_tabel_2,
+    bulan_tabel_3,
+    bulan_tabel_4,
+    bulan_tabel_5,
+    bulan_tabel_6,
+    bulan_tabel_7,
+  ]);
   /* end of bulan tabel 1 */
 
   // TEXTFIELD
@@ -190,9 +208,23 @@ const AppProvider = ({ children }) => {
           KETERANGAN_PRBK: textFieldObject.KETERANGAN_PRBK,
           PETUGAS_PRBK: textFieldObject.PETUGAS_PRBK,
           ...monthValuesPRBK,
-          ...monthValuesMNE,
           KETERANGAN_MNE: textFieldObject.KETERANGAN_MNE,
           PETUGAS_MNE: textFieldObject.PETUGAS_MNE,
+          ...monthValuesMNE,
+          KETERANGAN_PK: textFieldObject.KETERANGAN_PK,
+          PETUGAS_PK: textFieldObject.PETUGAS_PK,
+          ...monthValuesPK,
+          KETERANGAN_FNK: textFieldObject.KETERANGAN_FNK,
+          PETUGAS_FNK: textFieldObject.PETUGAS_FNK,
+          ...monthValuesFNK,
+          KETERANGAN_KK: textFieldObject.KETERANGAN_KK,
+          PETUGAS_KK: textFieldObject.PETUGAS_KK,
+          ...monthValuesKK,
+          KETERANGAN_monthValuesPELAPORAN:
+            textFieldObject.KETERANGAN_monthValuesPELAPORAN,
+          PETUGAS_monthValuesPELAPORAN:
+            textFieldObject.PETUGAS_monthValuesPELAPORAN,
+          ...monthValuesPELAPORAN,
         },
       });
 
@@ -247,6 +279,10 @@ const AppProvider = ({ children }) => {
         setBulan_tabel_1,
         setBulan_tabel_2,
         setBulan_tabel_3,
+        setBulan_tabel_4,
+        setBulan_tabel_5,
+        setBulan_tabel_6,
+        setBulan_tabel_7,
       }}
     >
       {children}

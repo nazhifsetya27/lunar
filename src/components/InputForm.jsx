@@ -32,30 +32,43 @@ const InputForm = () => {
     setBulan_tabel_1,
     setBulan_tabel_2,
     setBulan_tabel_3,
+    setBulan_tabel_4,
+    setBulan_tabel_5,
+    setBulan_tabel_6,
+    setBulan_tabel_7,
   } = useApp();
 
-  const handleChangeBulanTabel_1 = (event, values) => {
+  const handleChangeBulanTabel = (tableNumber) => (event, values) => {
     const newSelectedValues = {};
     values.forEach((value) => {
       newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
     });
-    setBulan_tabel_1(newSelectedValues);
-  };
 
-  const handleChangeBulanTabel_2 = (event, values) => {
-    const newSelectedValues = {};
-    values.forEach((value) => {
-      newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
-    });
-    setBulan_tabel_2(newSelectedValues);
-  };
-
-  const handleChangeBulanTabel_3 = (event, values) => {
-    const newSelectedValues = {};
-    values.forEach((value) => {
-      newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
-    });
-    setBulan_tabel_3(newSelectedValues);
+    switch (tableNumber) {
+      case 1:
+        setBulan_tabel_1(newSelectedValues);
+        break;
+      case 2:
+        setBulan_tabel_2(newSelectedValues);
+        break;
+      case 3:
+        setBulan_tabel_3(newSelectedValues);
+        break;
+      case 4:
+        setBulan_tabel_4(newSelectedValues);
+        break;
+      case 5:
+        setBulan_tabel_5(newSelectedValues);
+        break;
+      case 6:
+        setBulan_tabel_6(newSelectedValues);
+        break;
+      case 7:
+        setBulan_tabel_7(newSelectedValues);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleChangeLokasiTabel_1 = (event, value) => {
@@ -487,7 +500,7 @@ const InputForm = () => {
               disablePortal
               // id=""
               options={DropdownOptions.optionWaktuMulaiDanBerakhir}
-              onChange={handleChangeBulanTabel_1}
+              onChange={handleChangeBulanTabel(1)}
               renderInput={(params) => <TextField {...params} label="Bulan" />}
             />
           </div>
@@ -531,7 +544,7 @@ const InputForm = () => {
               multiple
               disablePortal
               options={DropdownOptions.optionWaktuMulaiDanBerakhir}
-              onChange={handleChangeBulanTabel_2}
+              onChange={handleChangeBulanTabel(2)}
               renderInput={(params) => <TextField {...params} label="Bulan" />}
             />
           </div>
@@ -572,7 +585,171 @@ const InputForm = () => {
               multiple
               disablePortal
               options={DropdownOptions.optionWaktuMulaiDanBerakhir}
-              onChange={handleChangeBulanTabel_3}
+              onChange={handleChangeBulanTabel(3)}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
+        </div>
+
+        {/* b - 3 */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-sm-regular my-4">3. Penyusunan Kajian </p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_4"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_PK"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_PK"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel(4)}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
+        </div>
+
+        {/* b - 4 */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-sm-regular my-4">4. Fasilitasi dan Koordinasi</p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_5"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_FNK"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_FNK"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel(5)}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
+        </div>
+
+        {/* b - 5 */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-sm-regular my-4">5. Kunjungan Kerja</p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_6"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_KK"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_KK"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel(6)}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
+        </div>
+
+        {/* c */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-md-semibold my-4">c. Pelaporan</p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_7"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_PELAPORAN"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_PELAPORAN"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel(7)}
               renderInput={(params) => <TextField {...params} label="Bulan" />}
             />
           </div>
