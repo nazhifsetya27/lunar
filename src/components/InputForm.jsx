@@ -31,6 +31,7 @@ const InputForm = () => {
     setLokasi_tabel_1,
     setBulan_tabel_1,
     setBulan_tabel_2,
+    setBulan_tabel_3,
   } = useApp();
 
   const handleChangeBulanTabel_1 = (event, values) => {
@@ -47,6 +48,14 @@ const InputForm = () => {
       newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
     });
     setBulan_tabel_2(newSelectedValues);
+  };
+
+  const handleChangeBulanTabel_3 = (event, values) => {
+    const newSelectedValues = {};
+    values.forEach((value) => {
+      newSelectedValues[value.label.toUpperCase().replace(" ", "_")] = true;
+    });
+    setBulan_tabel_3(newSelectedValues);
   };
 
   const handleChangeLokasiTabel_1 = (event, value) => {
@@ -484,7 +493,7 @@ const InputForm = () => {
           </div>
         </div>
 
-        {/* b */}
+        {/* b - 1 */}
         <div className="flex flex-col gap-3">
           <div>
             <p className="text-md-semibold my-4">b. Pelaksanaan</p>
@@ -523,6 +532,47 @@ const InputForm = () => {
               disablePortal
               options={DropdownOptions.optionWaktuMulaiDanBerakhir}
               onChange={handleChangeBulanTabel_2}
+              renderInput={(params) => <TextField {...params} label="Bulan" />}
+            />
+          </div>
+        </div>
+
+        {/* b - 2 */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-sm-regular my-4">2. Monitoring dan Evaluasi </p>
+            <Autocomplete
+              disablePortal
+              id="LOKASI_3"
+              options={DropdownOptions.optionLokasi}
+              onChange={handleChangeLokasiTabel_1}
+              renderInput={(params) => <TextField {...params} label="Lokasi" />}
+            />
+          </div>
+          <div>
+            <TextField
+              name="KETERANGAN_MNE"
+              label="Keterangan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="PETUGAS_MNE"
+              label="Petugas"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <Autocomplete
+              multiple
+              disablePortal
+              options={DropdownOptions.optionWaktuMulaiDanBerakhir}
+              onChange={handleChangeBulanTabel_3}
               renderInput={(params) => <TextField {...params} label="Bulan" />}
             />
           </div>

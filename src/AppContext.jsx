@@ -17,13 +17,16 @@ const AppProvider = ({ children }) => {
   /* bulan tabel 1 */
   const [bulan_tabel_1, setBulan_tabel_1] = useState({});
   const [bulan_tabel_2, setBulan_tabel_2] = useState({});
+  const [bulan_tabel_3, setBulan_tabel_3] = useState({});
 
   const bulanRPFlags = handleValueBulan(bulan_tabel_1, "_RP");
   const bulanPRBKFlags = handleValueBulan(bulan_tabel_2, "_PRBK");
+  const bulanMNEFlags = handleValueBulan(bulan_tabel_3, "_MNE");
 
   const monthValuesRP = {};
   const monthValuesPRBK = {};
-  console.log({ monthValuesRP, monthValuesPRBK });
+  const monthValuesMNE = {};
+
   const months = [
     "JAN",
     "FEB",
@@ -46,7 +49,9 @@ const AppProvider = ({ children }) => {
       ? "V"
       : "";
   });
-  // console.log(monthValuesPRBK);
+  months.forEach((month) => {
+    monthValuesPRBK[`${month}_MNE`] = bulanMNEFlags[`${month}_MNE`] ? "V" : "";
+  });
   /* end of bulan tabel 1 */
 
   // TEXTFIELD
@@ -185,6 +190,9 @@ const AppProvider = ({ children }) => {
           KETERANGAN_PRBK: textFieldObject.KETERANGAN_PRBK,
           PETUGAS_PRBK: textFieldObject.PETUGAS_PRBK,
           ...monthValuesPRBK,
+          ...monthValuesMNE,
+          KETERANGAN_MNE: textFieldObject.KETERANGAN_MNE,
+          PETUGAS_MNE: textFieldObject.PETUGAS_MNE,
         },
       });
 
@@ -238,6 +246,7 @@ const AppProvider = ({ children }) => {
         setLokasi_tabel_1,
         setBulan_tabel_1,
         setBulan_tabel_2,
+        setBulan_tabel_3,
       }}
     >
       {children}
