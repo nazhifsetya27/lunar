@@ -13,6 +13,7 @@ const AppProvider = ({ children }) => {
   const [waktuBerakhir, setWaktuBerakhir] = useState(null);
   const [tahunAnggaran, setTahunAnggaran] = useState(null);
   const [lokasi_tabel_1, setLokasi_tabel_1] = useState({});
+  const [bagian, setBagian] = useState();
 
   /* bulan tabel 1 */
   const [bulan_tabel_1, setBulan_tabel_1] = useState({});
@@ -38,7 +39,7 @@ const AppProvider = ({ children }) => {
     const bulanPKFlags = handleValueBulan(bulan_tabel_4, "_PK");
     const bulanFNKFlags = handleValueBulan(bulan_tabel_5, "_FNK");
     const bulanKKFlags = handleValueBulan(bulan_tabel_6, "_KK");
-    const bulanPELAPORANFlags = handleValueBulan(bulan_tabel_7, "_PELAPORAN");
+    const bulanPELAPORANFlags = handleValueBulan(bulan_tabel_7, "_PLPR");
 
     const generateMonthValues = (bulanFlags, prefix, setMonthValues) => {
       const monthValues = {};
@@ -56,11 +57,7 @@ const AppProvider = ({ children }) => {
     generateMonthValues(bulanPKFlags, "PK", setMonthValuesPK);
     generateMonthValues(bulanFNKFlags, "FNK", setMonthValuesFNK);
     generateMonthValues(bulanKKFlags, "KK", setMonthValuesKK);
-    generateMonthValues(
-      bulanPELAPORANFlags,
-      "PELAPORAN",
-      setMonthValuesKKPELAPORAN
-    );
+    generateMonthValues(bulanPELAPORANFlags, "PLPR", setMonthValuesKKPELAPORAN);
   }, [
     bulan_tabel_1,
     bulan_tabel_2,
@@ -77,11 +74,23 @@ const AppProvider = ({ children }) => {
   const [points, setPoints] = useState([{ label: "A", value: "" }]);
   const [numbers, setNumbers] = useState([{ label: 1, value: "" }]);
   const [tujuan, setTujuan] = useState([{ label: 1, value: "" }]);
-  // console.log(textFieldValues);
 
   // value to conditionally render sub_kegiatan
   const [currentKegiatan, setCurrentKegiatan] = useState(null);
   /* END STATES */
+
+  /* HANDLE CHANGE */
+  const handleChangeTextField = (event) => {
+    const { name, value } = event.target;
+    const index = textFieldValues.findIndex((item) => item.name === name);
+    if (index !== -1) {
+      const updatedTextFieldValues = [...textFieldValues];
+      updatedTextFieldValues[index] = { name, value };
+      setTextFieldValues(updatedTextFieldValues);
+    } else {
+      setTextFieldValues((prevValues) => [...prevValues, { name, value }]);
+    }
+  };
 
   const nomor_sub_kegiatan = subKegiatan?.label.split(" ")[0];
   const text_sub_kegiatan = subKegiatan?.label.split(" ").slice(1).join(" ");
@@ -90,19 +99,53 @@ const AppProvider = ({ children }) => {
     acc[curr.name] = curr.value;
     return acc;
   }, {});
+  // console.log(textFieldObject);
+
+  /* handle value bulan tabel 2 */
+  const generateMonthlyValues = (prefix) => {
+    const monthKeys = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MEI",
+      "JUN",
+      "JUL",
+      "AGT",
+      "SEP",
+      "OKT",
+      "NOV",
+      "DES",
+    ];
+    const monthlyValues = {};
+    monthKeys.forEach((month) => {
+      const key = `${month}_${prefix}`;
+      monthlyValues[key] = textFieldObject[key];
+    });
+    return monthlyValues;
+  };
+
+  const monthlyValuesHonorNarsum = generateMonthlyValues("1");
+  const monthlyValuesHonorFGDNarsum = generateMonthlyValues("2");
+  const monthlyValuesMakanMinumRapat = generateMonthlyValues("3");
+  const monthlyValuesSnack = generateMonthlyValues("4");
+  const monthlyValuesMeetingDalamKota = generateMonthlyValues("5");
+  // console.log({ monthlyValuesHonorNarsum, monthlyValuesHonorFGDNarsum });
+
+  /* end of handle value bulan tabel 2 */
 
   const pointsObject = points.reduce((acc, curr) => {
-    acc[curr.label] = curr.value;
+    acc[curr?.label] = curr.value;
     return acc;
   }, {});
 
   const numbersObject = numbers.reduce((acc, curr) => {
-    acc[curr.label] = curr.value;
+    acc[curr?.label] = curr.value;
     return acc;
   }, {});
 
   const tujuanObject = tujuan.reduce((acc, curr) => {
-    acc[curr.label] = curr.value;
+    acc[curr?.label] = curr.value;
     return acc;
   }, {});
 
@@ -114,25 +157,27 @@ const AppProvider = ({ children }) => {
 
   const isFlagsOutput = {};
   numbers.forEach((numObj) => {
-    const label = numObj.label;
+    const label = numObj?.label;
     isFlagsOutput[`ISOUTPUT_${label}`] = numObj.value ? true : false;
   });
 
   const isFlagsTujuan = {};
   tujuan.forEach((numObj) => {
-    const label = numObj.label;
+    const label = numObj?.label;
     isFlagsTujuan[`ISTUJUAN_${label}`] = numObj.value ? true : false;
   });
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [url, setUrl] = useState("");
+  // console.log(url);
 
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
       const response = await axios.post("https://app.documentero.com/api", {
-        document: "crJh34Rmbbpzur2kLVFR",
-        apiKey: "HGYHEHI-46AEBTY-URY3S4I-Q6XLIAA",
+        document: "6p0D1IAfrk7deLC6v7CV",
+        apiKey: "ZWKL2AY-YFHUN4Q-QK44LJI-7XKUWGY",
         format: "docx",
         data: {
           NOMOR_SUB_KEGIATAN: nomor_sub_kegiatan,
@@ -220,11 +265,25 @@ const AppProvider = ({ children }) => {
           KETERANGAN_KK: textFieldObject.KETERANGAN_KK,
           PETUGAS_KK: textFieldObject.PETUGAS_KK,
           ...monthValuesKK,
-          KETERANGAN_monthValuesPELAPORAN:
-            textFieldObject.KETERANGAN_monthValuesPELAPORAN,
-          PETUGAS_monthValuesPELAPORAN:
-            textFieldObject.PETUGAS_monthValuesPELAPORAN,
+          /* ------ */
+          KETERANGAN_PELAPORAN: textFieldObject.KETERANGAN_PELAPORAN,
+          PETUGAS_PELAPORAN: textFieldObject.PETUGAS_PELAPORAN,
           ...monthValuesPELAPORAN,
+          /* ------ */
+          BAGIAN: bagian?.label,
+          NAMA_PPTK: textFieldObject.NAMA_PPTK,
+          NIP_PPTK: textFieldObject.NIP_PPTK,
+          NAMA_KT: textFieldObject.NAMA_KT,
+          NIP_KT: textFieldObject.NIP_KT,
+          // tabel 2
+          URAIAN_HONOR_NARSUM: textFieldObject.URAIAN_HONOR_NARSUM,
+          HARGA_HONOR_NARSUM: textFieldObject.HARGA_HONOR_NARSUM,
+          JUMLAH_HONOR_NARSUM: textFieldObject.JUMLAH_HONOR_NARSUM,
+          ...monthlyValuesHonorNarsum,
+          ...monthlyValuesHonorFGDNarsum,
+          ...monthlyValuesMakanMinumRapat,
+          ...monthlyValuesSnack,
+          ...monthlyValuesMeetingDalamKota,
         },
       });
 
@@ -235,8 +294,9 @@ const AppProvider = ({ children }) => {
       const responseData = response.data;
       console.log(responseData.data);
 
-      if (responseData.data) {
+      if (response.data) {
         window.open(responseData.data, "_blank");
+        // setUrl(response.data.data);
       } else {
         throw new Error("No URL found in response data");
       }
@@ -258,8 +318,6 @@ const AppProvider = ({ children }) => {
         subKegiatan,
         setSubKegiatan,
         isLoading,
-        textFieldValues,
-        setTextFieldValues,
         points,
         setPoints,
         numbers,
@@ -283,6 +341,9 @@ const AppProvider = ({ children }) => {
         setBulan_tabel_5,
         setBulan_tabel_6,
         setBulan_tabel_7,
+        setBagian,
+        bagian,
+        handleChangeTextField,
       }}
     >
       {children}

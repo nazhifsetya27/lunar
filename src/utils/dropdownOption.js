@@ -117,6 +117,45 @@ const DropdownOptions = {
     { id: 28, label: "Jawa Barat" },
     { id: 29, label: "Luar Provinsi" },
   ],
+
+  optionBagian: [
+    {
+      label: "BMS",
+    },
+    {
+      label: "TU",
+    },
+    {
+      label: "SARPRAS S",
+    },
+    {
+      label: "KBS",
+    },
+    {
+      label: "KRNPD",
+    },
+    {
+      label: "NPD I",
+    },
+    {
+      label: "NPD II",
+    },
+    {
+      label: "NPD III",
+    },
+    {
+      label: "KRPD",
+    },
+    {
+      label: "KESEHATAN",
+    },
+    {
+      label: "SOSIAL",
+    },
+    {
+      label: "PENDIDIKAN",
+    },
+  ],
 };
 
 export { DropdownOptions };

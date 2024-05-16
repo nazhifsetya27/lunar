@@ -5,6 +5,7 @@ import { DropdownOptions } from "../utils/dropdownOption";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { useApp } from "../AppContext";
+import { Tabel2 } from "./tabel2";
 
 const InputForm = () => {
   const {
@@ -12,8 +13,6 @@ const InputForm = () => {
     setKegiatan,
     subKegiatan,
     setSubKegiatan,
-    textFieldValues,
-    setTextFieldValues,
     points,
     setPoints,
     numbers,
@@ -36,6 +35,9 @@ const InputForm = () => {
     setBulan_tabel_5,
     setBulan_tabel_6,
     setBulan_tabel_7,
+    setBagian,
+    bagian,
+    handleChangeTextField,
   } = useApp();
 
   const handleChangeBulanTabel = (tableNumber) => (event, values) => {
@@ -108,19 +110,11 @@ const InputForm = () => {
   const handleTahunAnggaranChange = (event, value) => {
     setTahunAnggaran(value);
   };
-  //end of dropdown
 
-  const handleChangeTextField = (event) => {
-    const { name, value } = event.target;
-    const index = textFieldValues.findIndex((item) => item.name === name);
-    if (index !== -1) {
-      const updatedTextFieldValues = [...textFieldValues];
-      updatedTextFieldValues[index] = { name, value };
-      setTextFieldValues(updatedTextFieldValues);
-    } else {
-      setTextFieldValues((prevValues) => [...prevValues, { name, value }]);
-    }
+  const handleBagianChange = (event, value) => {
+    setBagian(value);
   };
+  //end of dropdown
 
   // dasar hukum points
   const handleChangePoint = (index, event) => {
@@ -186,7 +180,7 @@ const InputForm = () => {
 
   return (
     <div className="h-screen overflow-y-auto custom-scrollbar">
-      <form className=" mx-auto p-4 border rounded-lg gap-3 flex flex-col">
+      <form className=" mx-auto p-4 border rounded-lg gap-3 flex flex-col mb-3">
         <Autocomplete
           disablePortal
           id="kegiatan"
@@ -459,6 +453,16 @@ const InputForm = () => {
             variant="outlined"
             fullWidth
             onChange={handleChangeTextField}
+          />
+        </div>
+        <div>
+          <Autocomplete
+            disablePortal
+            id="BAGIAN"
+            options={DropdownOptions.optionBagian}
+            value={bagian}
+            onChange={handleBagianChange}
+            renderInput={(params) => <TextField {...params} label="Bagian" />}
           />
         </div>
 
@@ -752,6 +756,52 @@ const InputForm = () => {
               onChange={handleChangeBulanTabel(7)}
               renderInput={(params) => <TextField {...params} label="Bulan" />}
             />
+          </div>
+        </div>
+
+        {/* TTD */}
+        <div className="flex flex-col gap-3">
+          <div>
+            <p className="text-md-semibold my-4">Tanda Tangan</p>
+            <TextField
+              name="NAMA_PPTK"
+              label="Pejabat Pelaksana Teknis Kegiatan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="NIP_PPTK"
+              label="NIP Pejabat Pelaksana Teknis Kegiatan"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="NAMA_KT"
+              label="Ketua Tim"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+          <div>
+            <TextField
+              name="NIP_KT"
+              label="NIP Ketua Tim"
+              variant="outlined"
+              fullWidth
+              onChange={handleChangeTextField}
+            />
+          </div>
+
+          {/* Tabel 2 */}
+          <div>
+            <Tabel2 />
           </div>
         </div>
       </form>
