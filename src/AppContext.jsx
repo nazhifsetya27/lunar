@@ -194,10 +194,6 @@ const AppProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  function openDownloadTab(url) {
-    window.open(url, "_blank");
-  }
-
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
@@ -364,6 +360,73 @@ const AppProvider = ({ children }) => {
           URAIAN_SNACK_3: textFieldObject.URAIAN_SNACK_3,
           HARGA_SNACK_3: textFieldObject.HARGA_SNACK_3,
           JUMLAH_SNACK_3: textFieldObject.JUMLAH_SNACK_3,
+          // d1
+          URAIAN_UANG_HARIAN: textFieldObject.URAIAN_UANG_HARIAN,
+          HARGA_UANG_HARIAN: textFieldObject.HARGA_UANG_HARIAN,
+          JUMLAH_UANG_HARIAN: textFieldObject.JUMLAH_UANG_HARIAN,
+          // d2
+          URAIAN_BBM: textFieldObject.URAIAN_BBM,
+          HARGA_BBM: textFieldObject.HARGA_BBM,
+          JUMLAH_BBM: textFieldObject.JUMLAH_BBM,
+          // d3
+          URAIAN_TOL: textFieldObject.URAIAN_TOL,
+          HARGA_TOL: textFieldObject.HARGA_TOL,
+          JUMLAH_TOL: textFieldObject.JUMLAH_TOL,
+          // e1 -> kab/kota
+          URAIAN_UANG_HARIAN_2: textFieldObject.URAIAN_UANG_HARIAN_2,
+          HARGA_UANG_HARIAN_2: textFieldObject.HARGA_UANG_HARIAN_2,
+          JUMLAH_UANG_HARIAN_2: textFieldObject.JUMLAH_UANG_HARIAN_2,
+          // e2
+          URAIAN_BBM_2: textFieldObject.URAIAN_BBM_2,
+          HARGA_BBM_2: textFieldObject.HARGA_BBM_2,
+          JUMLAH_BBM_2: textFieldObject.JUMLAH_BBM_2,
+          // e3
+          URAIAN_TOL_2: textFieldObject.URAIAN_TOL_2,
+          HARGA_TOL_2: textFieldObject.HARGA_TOL_2,
+          JUMLAH_TOL_2: textFieldObject.JUMLAH_TOL_2,
+          // e4
+          URAIAN_TOL_3: textFieldObject.URAIAN_TOL_3,
+          HARGA_TOL_3: textFieldObject.HARGA_TOL_3,
+          JUMLAH_TOL_3: textFieldObject.JUMLAH_TOL_3,
+          //f1 - bali
+          URAIAN_UANG_REPRESENTASI: textFieldObject.URAIAN_UANG_REPRESENTASI,
+          HARGA_UANG_REPRESENTASI: textFieldObject.HARGA_UANG_REPRESENTASI,
+          JUMLAH_UANG_REPRESENTASI: textFieldObject.JUMLAH_UANG_REPRESENTASI,
+          // f2
+          URAIAN_TAKSI_BANDUNG: textFieldObject.URAIAN_TAKSI_BANDUNG,
+          HARGA_TAKSI_BANDUNG: textFieldObject.HARGA_TAKSI_BANDUNG,
+          JUMLAH_TAKSI_BANDUNG: textFieldObject.JUMLAH_TAKSI_BANDUNG,
+          // f3
+          URAIAN_TAKSI_BALI: textFieldObject.URAIAN_TAKSI_BALI,
+          HARGA_TAKSI_BALI: textFieldObject.HARGA_TAKSI_BALI,
+          JUMLAH_TAKSI_BALI: textFieldObject.JUMLAH_TAKSI_BALI,
+          // f4
+          URAIAN_TIKET_PESAWAT: textFieldObject.URAIAN_TIKET_PESAWAT,
+          HARGA_TIKET_PESAWAT: textFieldObject.HARGA_TIKET_PESAWAT,
+          JUMLAH_TIKET_PESAWAT: textFieldObject.JUMLAH_TIKET_PESAWAT,
+          // f5
+          URAIAN_PENGINAPAN_ESELON_II:
+            textFieldObject.URAIAN_PENGINAPAN_ESELON_II,
+          HARGA_PENGINAPAN_ESELON_II:
+            textFieldObject.HARGA_PENGINAPAN_ESELON_II,
+          JUMLAH_PENGINAPAN_ESELON_II:
+            textFieldObject.JUMLAH_PENGINAPAN_ESELON_II,
+          // f6
+          URAIAN_PENGINAPAN_ESELON_III:
+            textFieldObject.URAIAN_PENGINAPAN_ESELON_III,
+          HARGA_PENGINAPAN_ESELON_III:
+            textFieldObject.HARGA_PENGINAPAN_ESELON_III,
+          JUMLAH_PENGINAPAN_ESELON_III:
+            textFieldObject.JUMLAH_PENGINAPAN_ESELON_III,
+          // f7
+          URAIAN_PENGINAPAN: textFieldObject.URAIAN_PENGINAPAN,
+          HARGA_PENGINAPAN: textFieldObject.HARGA_PENGINAPAN,
+          JUMLAH_PENGINAPAN: textFieldObject.JUMLAH_PENGINAPAN,
+          // f8
+          URAIAN_UANG_HARIAN_3: textFieldObject.URAIAN_UANG_HARIAN_3,
+          HARGA_UANG_HARIAN_3: textFieldObject.HARGA_UANG_HARIAN_3,
+          JUMLAH_UANG_HARIAN_3: textFieldObject.JUMLAH_UANG_HARIAN_3,
+          // textfield month tabel 2
           ...monthlyValuesHonorNarsum,
           ...monthlyValuesHonorFGDNarsum,
           ...monthlyValuesMakanMinumRapat,
@@ -397,19 +460,17 @@ const AppProvider = ({ children }) => {
       });
 
       if (response.status !== 200) {
-        throw new Error("Failed to submit data");
+        alert("Failed to submit data");
       }
 
       const responseData = response.data;
-      console.log(responseData.data);
 
-      openDownloadTab(responseData.data);
-
-      // if (response.data) {
-      //   window.open(responseData.data, "_blank");
-      // } else {
-      //   throw new Error("No URL found in response data");
-      // }
+      if (response.data) {
+        console.log("data dapet", responseData.data);
+        window.open(responseData.data, "_blank");
+      } else {
+        alert("No URL found in response data");
+      }
     } catch (error) {
       alert(error.message);
       setErrorMessage(error?.message);
