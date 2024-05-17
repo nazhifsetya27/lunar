@@ -130,6 +130,30 @@ const AppProvider = ({ children }) => {
   const monthlyValuesMakanMinumRapat = generateMonthlyValues("3");
   const monthlyValuesSnack = generateMonthlyValues("4");
   const monthlyValuesMeetingDalamKota = generateMonthlyValues("5");
+  const monthlyValues6 = generateMonthlyValues("6");
+  const monthlyValues7 = generateMonthlyValues("7");
+  const monthlyValues8 = generateMonthlyValues("8");
+  const monthlyValues9 = generateMonthlyValues("9");
+  const monthlyValues10 = generateMonthlyValues("10");
+  const monthlyValues11 = generateMonthlyValues("11");
+  const monthlyValues12 = generateMonthlyValues("12");
+  const monthlyValues13 = generateMonthlyValues("13");
+  const monthlyValues14 = generateMonthlyValues("14");
+  const monthlyValues15 = generateMonthlyValues("15");
+  const monthlyValues16 = generateMonthlyValues("16");
+  const monthlyValues17 = generateMonthlyValues("17");
+  const monthlyValues18 = generateMonthlyValues("18");
+  const monthlyValues19 = generateMonthlyValues("19");
+  const monthlyValues20 = generateMonthlyValues("20");
+  const monthlyValues21 = generateMonthlyValues("21");
+  const monthlyValues22 = generateMonthlyValues("22");
+  const monthlyValues23 = generateMonthlyValues("23");
+  const monthlyValues24 = generateMonthlyValues("24");
+  const monthlyValues25 = generateMonthlyValues("25");
+  const monthlyValues26 = generateMonthlyValues("26");
+  const monthlyValues27 = generateMonthlyValues("27");
+  const monthlyValues28 = generateMonthlyValues("28");
+  const monthlyValues29 = generateMonthlyValues("29");
   // console.log({ monthlyValuesHonorNarsum, monthlyValuesHonorFGDNarsum });
 
   /* end of handle value bulan tabel 2 */
@@ -169,8 +193,10 @@ const AppProvider = ({ children }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [url, setUrl] = useState("");
-  // console.log(url);
+
+  function openDownloadTab(url) {
+    window.open(url, "_blank");
+  }
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -276,14 +302,97 @@ const AppProvider = ({ children }) => {
           NAMA_KT: textFieldObject.NAMA_KT,
           NIP_KT: textFieldObject.NIP_KT,
           // tabel 2
+          // a1
           URAIAN_HONOR_NARSUM: textFieldObject.URAIAN_HONOR_NARSUM,
           HARGA_HONOR_NARSUM: textFieldObject.HARGA_HONOR_NARSUM,
           JUMLAH_HONOR_NARSUM: textFieldObject.JUMLAH_HONOR_NARSUM,
+          // a2
+          URAIAN_HONOREGD_NARSUM: textFieldObject.URAIAN_HONOREGD_NARSUM,
+          HARGA_HONOREGD_NARSUM: textFieldObject.HARGA_HONOREGD_NARSUM,
+          JUMLAH_HONOREGD_NARSUM: textFieldObject.JUMLAH_HONOREGD_NARSUM,
+          // a3
+          URAIAN_KONSUM_RAPAT: textFieldObject.URAIAN_KONSUM_RAPAT,
+          HARGA_KONSUM_RAPAT: textFieldObject.HARGA_KONSUM_RAPAT,
+          JUMLAH_KONSUM_RAPAT: textFieldObject.JUMLAH_KONSUM_RAPAT,
+          // a4
+          URAIAN_SNACK: textFieldObject.URAIAN_SNACK,
+          HARGA_SNACK: textFieldObject.HARGA_SNACK,
+          JUMLAH_SNACK: textFieldObject.JUMLAH_SNACK,
+          // a5
+          URAIAN_MEETING_DK: textFieldObject.URAIAN_MEETING_DK,
+          HARGA_MEETING_DK: textFieldObject.HARGA_MEETING_DK,
+          JUMLAH_MEETING_DK: textFieldObject.JUMLAH_MEETING_DK,
+          // b1
+          URAIAN_HONORARIUM_NARSUM: textFieldObject.URAIAN_HONORARIUM_NARSUM,
+          HARGA_HONORARIUM_NARSUM: textFieldObject.HARGA_HONORARIUM_NARSUM,
+          JUMLAH_HONORARIUM_NARSUM: textFieldObject.JUMLAH_HONORARIUM_NARSUM,
+          // b2
+          URAIAN_HONORARIUMEGD_NARSUM:
+            textFieldObject.URAIAN_HONORARIUMEGD_NARSUM,
+          HARGA_HONORARIUMEGD_NARSUM:
+            textFieldObject.HARGA_HONORARIUMEGD_NARSUM,
+          JUMLAH_HONORARIUMEGD_NARSUM:
+            textFieldObject.JUMLAH_HONORARIUMEGD_NARSUM,
+          // b3
+          URAIAN_KONSUM_RAPAT_2: textFieldObject.URAIAN_KONSUM_RAPAT_2,
+          HARGA_KONSUM_RAPAT_2: textFieldObject.HARGA_KONSUM_RAPAT_2,
+          JUMLAH_KONSUM_RAPAT_2: textFieldObject.JUMLAH_KONSUM_RAPAT_2,
+          // b4
+          URAIAN_SNACK_2: textFieldObject.URAIAN_SNACK_2,
+          HARGA_SNACK_2: textFieldObject.HARGA_SNACK_2,
+          JUMLAH_SNACK_2: textFieldObject.JUMLAH_SNACK_2,
+          // b5
+          URAIAN_MEETING_DK_2: textFieldObject.URAIAN_MEETING_DK_2,
+          HARGA_MEETING_DK_2: textFieldObject.HARGA_MEETING_DK_2,
+          JUMLAH_MEETING_DK_2: textFieldObject.JUMLAH_MEETING_DK_2,
+          // c1
+          URAIAN_HONOR_TENAGA_AHLI: textFieldObject.URAIAN_HONOR_TENAGA_AHLI,
+          HARGA_HONOR_TENAGA_AHLI: textFieldObject.HARGA_HONOR_TENAGA_AHLI,
+          JUMLAH_HONOR_TENAGA_AHLI: textFieldObject.JUMLAH_HONOR_TENAGA_AHLI,
+          // c2
+          URAIAN_HONORARIUM_FGD_KAJIAN:
+            textFieldObject.URAIAN_HONORARIUM_FGD_KAJIAN,
+          HARGA_HONORARIUM_FGD_KAJIAN:
+            textFieldObject.HARGA_HONORARIUM_FGD_KAJIAN,
+          JUMLAH_HONORARIUM_FGD_KAJIAN:
+            textFieldObject.JUMLAH_HONORARIUM_FGD_KAJIAN,
+          // c3
+          URAIAN_KONSUM_RAPAT_3: textFieldObject.URAIAN_KONSUM_RAPAT_3,
+          HARGA_KONSUM_RAPAT_3: textFieldObject.HARGA_KONSUM_RAPAT_3,
+          JUMLAH_KONSUM_RAPAT_3: textFieldObject.JUMLAH_KONSUM_RAPAT_3,
+          // c4
+          URAIAN_SNACK_3: textFieldObject.URAIAN_SNACK_3,
+          HARGA_SNACK_3: textFieldObject.HARGA_SNACK_3,
+          JUMLAH_SNACK_3: textFieldObject.JUMLAH_SNACK_3,
           ...monthlyValuesHonorNarsum,
           ...monthlyValuesHonorFGDNarsum,
           ...monthlyValuesMakanMinumRapat,
           ...monthlyValuesSnack,
           ...monthlyValuesMeetingDalamKota,
+          ...monthlyValues6,
+          ...monthlyValues7,
+          ...monthlyValues8,
+          ...monthlyValues9,
+          ...monthlyValues10,
+          ...monthlyValues11,
+          ...monthlyValues12,
+          ...monthlyValues13,
+          ...monthlyValues14,
+          ...monthlyValues15,
+          ...monthlyValues16,
+          ...monthlyValues17,
+          ...monthlyValues18,
+          ...monthlyValues19,
+          ...monthlyValues20,
+          ...monthlyValues21,
+          ...monthlyValues22,
+          ...monthlyValues23,
+          ...monthlyValues24,
+          ...monthlyValues25,
+          ...monthlyValues26,
+          ...monthlyValues27,
+          ...monthlyValues28,
+          ...monthlyValues29,
         },
       });
 
@@ -294,12 +403,13 @@ const AppProvider = ({ children }) => {
       const responseData = response.data;
       console.log(responseData.data);
 
-      if (response.data) {
-        window.open(responseData.data, "_blank");
-        // setUrl(response.data.data);
-      } else {
-        throw new Error("No URL found in response data");
-      }
+      openDownloadTab(responseData.data);
+
+      // if (response.data) {
+      //   window.open(responseData.data, "_blank");
+      // } else {
+      //   throw new Error("No URL found in response data");
+      // }
     } catch (error) {
       alert(error.message);
       setErrorMessage(error?.message);
