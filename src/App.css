@@ -6,6 +6,10 @@
   fill: #667085;
 }
 
+.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
+  background: #f9fafb;
+}
+
 /* scrollbar */
 .custom-scrollbar {
   scrollbar-width: thin; /* For Firefox */

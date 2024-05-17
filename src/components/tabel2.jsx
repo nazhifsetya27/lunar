@@ -127,7 +127,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("1")}
         </div>
       </div>
@@ -173,7 +173,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("2")}
         </div>
       </div>
@@ -219,7 +219,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("3")}
         </div>
       </div>
@@ -265,7 +265,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("4")}
         </div>
       </div>
@@ -313,7 +313,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("5")}
         </div>
       </div>
@@ -362,7 +362,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("6")}
         </div>
       </div>
@@ -408,7 +408,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("7")}
         </div>
       </div>
@@ -454,7 +454,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("8")}
         </div>
       </div>
@@ -500,7 +500,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("9")}
         </div>
       </div>
@@ -548,7 +548,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("10")}
         </div>
       </div>
@@ -597,7 +597,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("11")}
         </div>
       </div>
@@ -643,7 +643,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("12")}
         </div>
       </div>
@@ -689,7 +689,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("13")}
         </div>
       </div>
@@ -735,7 +735,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("14")}
         </div>
       </div>
@@ -785,7 +785,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("15")}
         </div>
       </div>
@@ -831,7 +831,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("16")}
         </div>
       </div>
@@ -877,7 +877,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("17")}
         </div>
       </div>
@@ -927,7 +927,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("18")}
         </div>
       </div>
@@ -973,7 +973,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("19")}
         </div>
       </div>
@@ -1019,7 +1019,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("20")}
         </div>
       </div>
@@ -1065,7 +1065,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("21")}
         </div>
       </div>
@@ -1114,7 +1114,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("22")}
         </div>
       </div>
@@ -1160,7 +1160,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("23")}
         </div>
       </div>
@@ -1206,7 +1206,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("24")}
         </div>
       </div>
@@ -1252,7 +1252,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("25")}
         </div>
       </div>
@@ -1298,7 +1298,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("26")}
         </div>
       </div>
@@ -1344,7 +1344,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("27")}
         </div>
       </div>
@@ -1390,7 +1390,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("28")}
         </div>
       </div>
@@ -1436,7 +1436,7 @@ export const Tabel2 = () => {
             renderInput={(params) => <TextField {...params} label="Waktu" />}
           />
         </div>
-        <div className="flex flex-col gap-3 ml-4">
+        <div className="flex flex-col gap-3 ml-6">
           {renderSelectedMonths("29")}
         </div>
       </div>

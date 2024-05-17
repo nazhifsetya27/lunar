@@ -18,8 +18,8 @@ function App() {
         </div>
         {/* RIGHT */}
         <div className="w-2/5 h-full">
-          <div className="text-center">Preview</div>
-          {/* <Preview /> */}
+          {/* <div className="text-center">Preview</div> */}
+          <Preview />
         </div>
       </div>
     </>
