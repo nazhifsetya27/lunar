@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, memo } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { DropdownOptions } from "../utils/dropdownOption";
@@ -6,6 +6,64 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import RemoveOutlinedIcon from "@mui/icons-material/RemoveOutlined";
 import { useApp } from "../AppContext";
 import { Tabel2 } from "./tabel2";
+import _ from "lodash";
+
+const useDebouncedCallback = (callback, delay) => {
+  const debouncedCallback = useCallback(
+    _.debounce((...args) => callback(...args), delay),
+    [callback, delay]
+  );
+
+  return debouncedCallback;
+};
+
+const PointField = memo(({ index, point, handleChangePoint }) => {
+  return (
+    <TextField
+      label={`${point.label}`}
+      variant="outlined"
+      fullWidth
+      value={point.value}
+      onChange={(event) => handleChangePoint(index, event)}
+    />
+  );
+});
+
+const PointsSection = ({
+  points,
+  handleChangePoint,
+  handleAddPoint,
+  handleRemovePoint,
+}) => {
+  return (
+    <div>
+      <div className="flex justify-between mb-3">
+        <div>
+          <p className="text-md-semibold my-4">A. LATAR BELAKANG</p>
+          <p className="text-sm">1. DASAR HUKUM</p>
+        </div>
+        <div className="flex gap-3">
+          <button type="button" onClick={handleRemovePoint}>
+            <RemoveOutlinedIcon />
+          </button>
+          <button type="button" onClick={handleAddPoint}>
+            <AddCircleOutlineOutlinedIcon />
+          </button>
+        </div>
+      </div>
+      <div className="ml-2 gap-3 flex flex-col">
+        {points.map((point, index) => (
+          <PointField
+            key={index}
+            index={index}
+            point={point}
+            handleChangePoint={handleChangePoint}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const InputForm = () => {
   const {
@@ -39,6 +97,11 @@ const InputForm = () => {
     bagian,
     handleChangeTextField,
   } = useApp();
+
+  const debouncedHandleChangeTextField = useDebouncedCallback(
+    handleChangeTextField,
+    300
+  );
 
   const handleChangeBulanTabel = (tableNumber) => (event, values) => {
     const newSelectedValues = {};
@@ -215,52 +278,31 @@ const InputForm = () => {
           fullWidth
           multiline
           rows={3}
-          onChange={handleChangeTextField}
+          onChange={debouncedHandleChangeTextField}
         />
         <TextField
           name="target"
           label="Target"
           variant="outlined"
           fullWidth
-          onChange={handleChangeTextField}
+          onChange={debouncedHandleChangeTextField}
         />
         <TextField
           name="anggaran"
           label="Anggaran"
           variant="outlined"
           fullWidth
-          onChange={handleChangeTextField}
+          onChange={debouncedHandleChangeTextField}
         />
 
         {/* dasar hukum */}
         <div>
-          <div className="flex justify-between mb-3">
-            <div>
-              <p className="text-md-semibold my-4">A. LATAR BELAKANG</p>
-              <p className="text-sm">1. DASAR HUKUM</p>
-            </div>
-            <div className="flex gap-3">
-              <button type="button" onClick={handleRemovePoint}>
-                <RemoveOutlinedIcon />
-              </button>
-              <button type="button" onClick={handleAddPoint}>
-                <AddCircleOutlineOutlinedIcon />
-              </button>
-            </div>
-          </div>
-          <div className="ml-2 gap-3 flex flex-col">
-            {points.map((point, index) => (
-              <div key={index}>
-                <TextField
-                  label={`${point.label}`}
-                  variant="outlined"
-                  fullWidth
-                  value={point.value}
-                  onChange={(event) => handleChangePoint(index, event)}
-                />
-              </div>
-            ))}
-          </div>
+          <PointsSection
+            points={points}
+            handleChangePoint={handleChangePoint}
+            handleAddPoint={handleAddPoint}
+            handleRemovePoint={handleRemovePoint}
+          />
         </div>
 
         <div>
@@ -275,7 +317,7 @@ const InputForm = () => {
               fullWidth
               multiline
               rows={5}
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
         </div>
@@ -319,7 +361,7 @@ const InputForm = () => {
             fullWidth
             multiline
             rows={3}
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
 
@@ -359,7 +401,7 @@ const InputForm = () => {
             fullWidth
             multiline
             rows={3}
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
         <div>
@@ -373,7 +415,7 @@ const InputForm = () => {
             fullWidth
             multiline
             rows={3}
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
         <div>
@@ -385,7 +427,7 @@ const InputForm = () => {
             fullWidth
             multiline
             rows={3}
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
         <div>
@@ -397,7 +439,7 @@ const InputForm = () => {
             fullWidth
             multiline
             rows={3}
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
 
@@ -408,7 +450,7 @@ const InputForm = () => {
             label="TARGET"
             variant="outlined"
             fullWidth
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
 
@@ -452,7 +494,7 @@ const InputForm = () => {
             label="Ketua Tim"
             variant="outlined"
             fullWidth
-            onChange={handleChangeTextField}
+            onChange={debouncedHandleChangeTextField}
           />
         </div>
         <div>
@@ -486,7 +528,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -495,7 +537,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -531,7 +573,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -540,7 +582,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -572,7 +614,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -581,7 +623,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -613,7 +655,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -622,7 +664,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -654,7 +696,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -663,7 +705,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -695,7 +737,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -704,7 +746,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -736,7 +778,7 @@ const InputForm = () => {
               label="Keterangan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -745,7 +787,7 @@ const InputForm = () => {
               label="Petugas"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -768,7 +810,7 @@ const InputForm = () => {
               label="Pejabat Pelaksana Teknis Kegiatan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -777,7 +819,7 @@ const InputForm = () => {
               label="NIP Pejabat Pelaksana Teknis Kegiatan"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -786,7 +828,7 @@ const InputForm = () => {
               label="Ketua Tim"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
           <div>
@@ -795,7 +837,7 @@ const InputForm = () => {
               label="NIP Ketua Tim"
               variant="outlined"
               fullWidth
-              onChange={handleChangeTextField}
+              onChange={debouncedHandleChangeTextField}
             />
           </div>
 
