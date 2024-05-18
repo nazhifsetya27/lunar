@@ -99,7 +99,8 @@ const AppProvider = ({ children }) => {
     acc[curr.name] = curr.value;
     return acc;
   }, {});
-  // console.log(textFieldObject);
+  // console.log(textFieldValues);
+  // console.log(textFieldObject.indikator);
 
   /* handle value bulan tabel 2 */
   const generateMonthlyValues = (prefix) => {
@@ -515,6 +516,9 @@ const AppProvider = ({ children }) => {
         setBagian,
         bagian,
         handleChangeTextField,
+        nomor_sub_kegiatan,
+        text_sub_kegiatan,
+        textFieldObject,
       }}
     >
       {children}

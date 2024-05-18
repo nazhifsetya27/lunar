@@ -1,11 +1,6 @@
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import { useApp } from "../AppContext";
-import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
-import InputBase from "@mui/material/InputBase";
-import { styled, alpha } from "@mui/material/styles";
-import { Search } from "@mui/icons-material";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 export const Header = () => {
   const { handleSubmit, isLoading } = useApp();

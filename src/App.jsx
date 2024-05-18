@@ -3,7 +3,7 @@ import { useApp } from "./AppContext";
 import { Header } from "./components/Header";
 import InputForm from "./components/InputForm";
 import Preview from "./components/Preview";
-import DocxReader from "./components/docxReader";
+import LivePreview from "./components/livePreview";
 
 function App() {
   const { errorMessage } = useApp();
@@ -19,7 +19,8 @@ function App() {
         {/* RIGHT */}
         <div className="w-2/5 h-full">
           {/* <div className="text-center">Preview</div> */}
-          <Preview />
+          {/* <Preview /> */}
+          <LivePreview />
         </div>
       </div>
     </>
