@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="pt-16 flex m-3 justify-between">
+      <div className="flex m-3 justify-between">
         {/* LEFT */}
         <div className="w-3/5">
           <InputForm />
