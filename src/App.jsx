@@ -3,7 +3,7 @@ import { useApp } from "./AppContext";
 import { Header } from "./components/Header";
 import InputForm from "./components/InputForm";
 import Preview from "./components/Preview";
-import LivePreview from "./components/livePreview";
+import LivePreview from "./components/livePreview/livePreview";
 
 function App() {
   const { errorMessage } = useApp();

@@ -56,7 +56,7 @@ export const Tabel2 = () => {
     Juli: { short: "JUL" },
     Agustus: { short: "AGT" },
     September: { short: "SEP" },
-    Oktober: { short: "OCT" },
+    Oktober: { short: "OKT" },
     November: { short: "NOV" },
     Desember: { short: "DES" },
   };

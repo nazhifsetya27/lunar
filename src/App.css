@@ -10,6 +10,18 @@
   background: #f9fafb;
 }
 
+th,
+td {
+  border: 1px solid #cbd5e0;
+  padding: 8px;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
 /* scrollbar */
 .custom-scrollbar {
   scrollbar-width: thin; /* For Firefox */
