@@ -5,7 +5,7 @@ import { DropdownOptions } from "../utils/dropdownOption";
 import { useState } from "react";
 
 export const Tabel2 = () => {
-  const { handleChangeTextField } = useApp();
+  const { handleChangeTextField, bagian } = useApp();
   // General state for storing months selected for multiple Autocomplete components
   const [bulanSelections, setBulanSelections] = useState({
     1: [],
@@ -87,7 +87,8 @@ export const Tabel2 = () => {
         <div>
           <p className="text-md-semibold my-4">TABEL.2</p>
           <p className="text-md-semibold my-4">
-            Penyelenggaraan Fasilitasi & Koordinasi Pelaksanaan Urusan NPD II
+            Penyelenggaraan Fasilitasi & Koordinasi Pelaksanaan Urusan{" "}
+            {bagian?.label ? bagian?.label : ""}
           </p>
           <p className="text-sm-regular my-4">Honor Narasumber</p>
           <TextField
@@ -322,7 +323,8 @@ export const Tabel2 = () => {
       <div className="flex flex-col gap-3">
         <div>
           <p className="text-md-semibold my-4">
-            Penyelenggaraan Fasilitasi & Koordinasi Pelaksanaan Urusan NPD II
+            Penyelenggaraan Fasilitasi & Koordinasi Pelaksanaan Urusan{" "}
+            {bagian?.label ? bagian?.label : ""}
           </p>
           <p className="text-sm-regular my-4">Honorarium Narasumber</p>
           <TextField
@@ -557,7 +559,8 @@ export const Tabel2 = () => {
       <div className="flex flex-col gap-3">
         <div>
           <p className="text-md-semibold my-4">
-            Penyusunan Kajian urusan Kesra bidang NPD II
+            Penyusunan Kajian urusan Kesra bidang{" "}
+            {bagian?.label ? bagian?.label : ""}
           </p>
           <p className="text-sm-regular my-4">Honorarium Tenaga Ahli - S3</p>
           <TextField
@@ -744,8 +747,8 @@ export const Tabel2 = () => {
       <div className="flex flex-col gap-3">
         <div>
           <p className="text-md-semibold my-4">
-            Monitoring Evaluasi dan Pemantauan Urusan Kesra bidang NPD II-
-            Jakarta
+            Monitoring Evaluasi dan Pemantauan Urusan Kesra bidang{" "}
+            {bagian?.label ? bagian?.label : ""} - Jakarta
           </p>
           <p className="text-sm-regular my-4">Uang Harian</p>
           <TextField
@@ -886,8 +889,8 @@ export const Tabel2 = () => {
       <div className="flex flex-col gap-3">
         <div>
           <p className="text-md-semibold my-4">
-            Monitoring Evaluasi dan Pemantauan Urusan Kesra bidang NPD II-
-            Kabupaten Kota
+            Monitoring Evaluasi dan Pemantauan Urusan Kesra bidang{" "}
+            {bagian?.label ? bagian?.label : ""} - Kabupaten Kota
           </p>
           <p className="text-sm-regular my-4">Uang Harian</p>
           <TextField
